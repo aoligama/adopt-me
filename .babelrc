@@ -1,0 +1,10 @@
+{
+    "presets": [
+        [
+            "@babe/preset-react",
+            {
+                "runtime": "automatic"
+            }
+        ]
+    ]
+}
