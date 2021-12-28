@@ -2,10 +2,7 @@ import { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
 class Details extends Component {
-    constructor () {
-        super()
-        this.state = { loading: true }
-    }
+    state = { loading: true }
 
     async componentDidMount () {
         const id = this.props.match.params.id
@@ -14,7 +11,7 @@ class Details extends Component {
         )
         const json = await res.json()
         const [ pets ] = json.pets
-        
+
         this.setState(Object.assign(
             {
                 loading: false
@@ -24,6 +21,10 @@ class Details extends Component {
     }
 
     render () {
+        if (this.state.loading) {
+            return <h2>loading...</h2>
+        }
+
         const { animal, breed, city, state, description, name } = this.state
         return(
             <div className="details">
