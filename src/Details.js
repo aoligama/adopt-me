@@ -3,9 +3,10 @@ import { withRouter } from 'react-router-dom'
 import Carousel from './Carousel'
 import ErrorBoundary from './ErrorBoundary'
 import ThemeContext from './ThemeContext'
+import Modal from './Modal'
 
 class Details extends Component {
-    state = { loading: true }
+    state = { loading: true, showModal: false }
 
     async componentDidMount () {
         const id = this.props.match.params.id
@@ -23,6 +24,9 @@ class Details extends Component {
         ))
     }
 
+    toggleModal = () => this.setState({ showModal: !this.state.showModal })
+    adopt = () => (window.location = 'http://bit.ly/pet-adopt')
+
     render () {
         if (this.state.loading) {
             return <h2>loading...</h2>
@@ -35,7 +39,8 @@ class Details extends Component {
             state, 
             description, 
             name, 
-            images 
+            images,
+            showModal
         } = this.state
         
         return(
@@ -46,11 +51,25 @@ class Details extends Component {
 
                     <ThemeContext.Consumer>
                         {([theme]) => (
-                            <button style={{ backgroundColor: theme }}>Adopt {name}</button>
+                            <button onClick={this.toggleModal} style={{ backgroundColor: theme }}>Adopt {name}</button>
                         )}
                     </ThemeContext.Consumer>
                     
                     <p>{description}</p>
+
+                    {
+                        showModal ? (
+                            <Modal>
+                                <div>
+                                    <h1>Would you like to adopt {name}?</h1>
+                                    <div className="buttons">
+                                      <button onClick={this.adopt}>Yes</button>
+                                      <button onClick={this.toggleModal}>No</button>
+                                    </div>
+                                </div>
+                            </Modal>
+                        ) : null
+                    }
                 </div>
                 <Carousel images={images} />
             </div>
