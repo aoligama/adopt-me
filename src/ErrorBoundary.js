@@ -19,9 +19,9 @@ class ErrorBoundary extends Component {
     }
 
     render () {
-        if(this.state.redirect) {
+        if (this.state.redirect) {
             return <Redirect to="/" />
-        } else if(this.state.hasError) {
+        } else if (this.state.hasError) {
             return (
                 <h2>
                     There was an error with this listing. <Link to="/">Click here</Link>{" "} to back to the home page or wait five seconds.
