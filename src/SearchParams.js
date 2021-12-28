@@ -20,13 +20,17 @@ const SearchParams = () => {
             `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
         )
         const json = await res.json()
-
         setPets(json.pets)
     }
 
     return(
         <div className="search-params">
-            <form>
+            <form
+                onSubmit={e => {
+                    e.preventDefault()
+                    requestPets()
+                }}
+            >
                 <label htmlFor="location">
                     Location
                     <input 
