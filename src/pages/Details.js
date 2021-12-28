@@ -1,9 +1,9 @@
 import { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import Carousel from './Carousel'
-import ErrorBoundary from './ErrorBoundary'
-import ThemeContext from './ThemeContext'
-import Modal from './Modal'
+import Carousel from '../components/Carousel'
+import ErrorBoundary from '../errors/ErrorBoundary'
+import ThemeContext from '../contexts/ThemeContext'
+import Modal from '../components/Modal'
 
 class Details extends Component {
     state = { loading: true, showModal: false }

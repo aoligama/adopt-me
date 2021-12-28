@@ -1,9 +1,11 @@
 import { useState, useEffect, useContext } from 'react'
-import ThemeContext from './ThemeContext'
-import useBreedList from './useBreedList'
-import Results from './Results'
-
-const ANIMALS = ['bird', 'cat', 'dog', 'rabbit', 'reptile']
+import ThemeContext from '../contexts/ThemeContext'
+import useBreedList from '../hooks/useBreedList'
+import Results from '../components/Results'
+import {
+    ANIMALS,
+    COLORS
+} from '../utils/constants'
 
 const SearchParams = () => {
     const [location, setLocation] = useState('')
@@ -53,8 +55,8 @@ const SearchParams = () => {
                         <option></option>
                         {
                             ANIMALS.map(animal => (
-                                <option value={animal} key={animal}>
-                                    {animal}
+                                <option value={animal.value} key={animal}>
+                                    {animal.label}
                                 </option>
                             ))
                         }
@@ -86,11 +88,13 @@ const SearchParams = () => {
                         onChange={e => setTheme(e.target.value)} 
                         onBlur={e => setTheme(e.target.value)}
                     >
-                        <option value="darkblue">Dark Blue</option>
-                        <option value="salmon">Salmon</option>
-                        <option value="peru">Peru</option>
-                        <option value="chartreuse">Chartreuse</option>
-                        <option value="mediumorchid">Medium Orchid</option>
+                        {
+                            COLORS.map(color => (
+                                <option value={color.value} key={color}>
+                                    {color.label}
+                                </option>
+                            ))
+                        }
                     </select>
                 </label>
                 <button style={{ backgroundColor: theme }}>Submit</button>
