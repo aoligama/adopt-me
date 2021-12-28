@@ -1,7 +1,7 @@
 {
     "presets": [
         [
-            "@babe/preset-react",
+            "@babel/preset-react",
             {
                 "runtime": "automatic"
             }
